@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Canteen Mate</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .logo img {
+      width: 90px;
+      height: 90px;
+    }
+
+    #head {
+      flex-grow: 1;
+      text-align: center;
+      margin: 0;
+    }
+
+    nav {
+      text-align: right;
+    }
+
+    nav a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    input, select {
+      padding: 8px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    table {
+      width: 100%;
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    td {
+      padding: 10px;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="canteenlogo.jpeg" alt="Logo" />
+    </div>
+    <h1 id="head">Canteen Mate</h1>
+    <nav>
+      <a href="#profile">Profile</a>
+      <a href="#orders">Orders</a>
+      <a href="#feedback">Feedback</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section" id="login">
+      <form id="loginForm">
+        <table>
+          <tr>
+            <td>NAME:</td>
+            <td><input type="text" placeholder="Enter Name" required /></td>
+          </tr>
+          <tr>
+            <td>DEPARTMENT:</td>
+            <td>
+              <select required>
+                <option value="" disabled selected>Select Department</option>
+                <option>AI&DS</option>
+                <option>AI&ML</option>
+                <option>CSE</option>
+                <option>ECE</option>
+                <option>CSBS</option>
+                <option>MECH</option>
+                <option>CCE</option>
+                <option>VLSI</option>
+                <option>BIOTECH</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>SECTION:</td>
+            <td>
+              <select required>
+                <option value="" disabled selected>Select Section</option>
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+                <option>D</option>
+                <option>E</option>
+                <option>F</option>
+                <option>G</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>REGISTER NUMBER:</td>
+            <td>
+              <input type="text" id="regNumber" placeholder="Enter Register Number" required />
+              <div class="error" id="regError">Register number must be numeric</div>
+            </td>
+          </tr>
+          <tr>
+            <td>Email:</td>
+            <td>
+              <input type="email" id="email" placeholder="Enter email" required />
+              <div class="error" id="emailError">Email must end with .ritchennai.edu.in</div>
+            </td>
+          </tr>
+          <tr>
+            <td>Password:</td>
+            <td><input type="password" placeholder="Enter password" required /></td>
+          </tr>
+          <tr>
+            <td colspan="2" style="text-align:center;">
+              <button type="submit">Login</button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const emailError = document.getElementById("emailError");
+      const regNumber = document.getElementById("regNumber").value.trim();
+      const regError = document.getElementById("regError");
+
+      let valid = true;
+
+      // Validate email domain
+      if (!email.endsWith(".ritchennai.edu.in")) {
+        emailError.style.display = "block";
+        valid = false;
+      } else {
+        emailError.style.display = "none";
+      }
+
+      // Validate register number is numeric
+      if (!/^\d+$/.test(regNumber)) {
+        regError.style.display = "block";
+        valid = false;
+      } else {
+        regError.style.display = "none";
+      }
+
+      if (valid) {
+        window.location.href = "menu.html"; // redirect after validation
+      }
+    });
+  </script>
+</body>
+</html>

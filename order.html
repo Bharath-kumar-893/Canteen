@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Summary</title>
+  <link rel="stylesheet" href="menucard.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+    #cart {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      color: #d44a0b;
+    }
+    #orderSummary p {
+      margin: 5px 0;
+    }
+    #totalAmount {
+      font-weight: bold;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="cart">
+    <h2>Your Cart</h2>
+    <div id="orderSummary"></div>
+    <p>Total Amount: <span id="totalAmount">₹0</span></p>
+    <button onclick="placeOrder()">Place Order</button>
+  </div>
+
+  <script>
+    // Retrieve cart from local storage
+    let cart = JSON.parse(localStorage.getItem("cart")) || {};
+
+    function updateCart() {
+      let orderSummary = document.getElementById("orderSummary");
+      orderSummary.innerHTML = '';
+      let total = 0;
+
+      for (let item in cart) {
+        const itemTotal = cart[item].price * cart[item].quantity;
+        total += itemTotal;
+        orderSummary.innerHTML += `<p>${item} - ₹${cart[item].price} x ${cart[item].quantity} = ₹${itemTotal}</p>`;
+      }
+
+      document.getElementById("totalAmount").innerText = `₹${total}`;
+    }
+
+    function placeOrder() {
+      alert("Order placed! Total amount: " + document.getElementById("totalAmount").innerText);
+      // Reset cart
+      localStorage.removeItem("cart");
+      cart = {};
+      updateCart();
+    }
+
+    // Update the cart display on page load
+    updateCart();
+  </script>
+
+</body>
+</html>

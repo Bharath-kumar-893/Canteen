@@ -1,0 +1,359 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Restaurant Menu</title>
+  <link rel="stylesheet" href="menucard.css" />
+  <style>
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+      gap: 10px;
+      padding: 0 15px;
+    }
+
+    #searchInput {
+      padding: 8px;
+      flex: 1;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .controls button {
+      padding: 8px 12px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .controls button:hover {
+      background-color: #0056b3;
+    }
+
+    .menu-item {
+      display: flex;
+      margin: 10px;
+      border: 1px solid #eee;
+      padding: 10px;
+      border-radius: 5px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .menu-item img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      margin-right: 15px;
+      border-radius: 5px;
+    }
+
+    .info {
+      flex: 1;
+    }
+
+    .add-btn {
+      margin-top: 10px;
+      padding: 6px 12px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .add-btn:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="controls">
+    <input type="text" id="searchInput" placeholder="Search for a dish..." />
+    <button onclick="sortByPrice()">Sort by Price</button>
+  </div>
+
+  <main class="menu">
+    <div class="menu-item"><img src="idly.jpg" alt="Idly Set"><div class="info"><h3>Idly set</h3><p>₹30</p><p class="desc">A popular Hyderabadi dish prepared...</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="Kal dosa.jpg" alt="Kal Dosa"><div class="info"><h3>Kal Dosa</h3><p>₹30</p><p class="desc">Juicy grilled chicken served with...</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="parapu.jpeg" alt="Masal Vada"><div class="info"><h3>Masal Vada</h3><p>₹10</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="methu.jpeg" alt="Medhu Vada"><div class="info"><h3>Medhu Vada</h3><p>₹10</p><p class="desc">A popular Hyderabadi dish prepared...</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="pongal.jpg" alt="Pongal"><div class="info"><h3>Pongal</h3><p>₹25</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="roast.jpeg" alt="Plain Dosa"><div class="info"><h3>Plain Dosa</h3><p>₹30</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="ghee-dosa.jpg" alt="Ghee Roast"><div class="info"><h3>Ghee Roast</h3><p>₹35</p><p class="desc">A popular Hyderabadi dish prepared...</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="podi.jpeg" alt="Podi dosa"><div class="info"><h3>Podi dosa</h3><p>₹35</p><p class="desc">A popular Hyderabadi dish prepared...</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="egg dosa.jpg" alt="Egg dosa"><div class="info"><h3>Egg dosa</h3><p>₹35</p><p class="desc">A popular Hyderabadi dish prepared...</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="Masala-Dosa.jpg" alt="masala dosa"><div class="info"><h3>masala dosa</h3><p>₹35</p><p class="desc">A popular Hyderabadi dish prepared...</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="onion uthapam.jpeg" alt="Onion uthappan"><div class="info"><h3>Onion uthappan</h3><p>₹40</p><p class="desc">A popular Hyderabadi dish prepared...</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="puri.jpeg" alt="Puri set"><div class="info"><h3>Puri set</h3><p>₹30</p><p class="desc">A popular Hyderabadi dish prepared...</p><button class="add-btn">ADD +</button></div></div>
+  </main>
+
+  <script>
+    // Search
+    document.getElementById("searchInput").addEventListener("input", function () {
+      const filter = this.value.toLowerCase();
+      const items = document.querySelectorAll(".menu-item");
+
+      items.forEach((item) => {
+        const text = item.querySelector("h3").textContent.toLowerCase();
+        item.style.display = text.includes(filter) ? "flex" : "none";
+      });
+    });
+
+    // Sort by price
+    function sortByPrice() {
+      const menu = document.querySelector(".menu");
+      const items = Array.from(document.querySelectorAll(".menu-item"));
+
+      items.sort((a, b) => {
+        const priceA = parseFloat(a.querySelector("p").textContent.replace("₹", ""));
+        const priceB = parseFloat(b.querySelector("p").textContent.replace("₹", ""));
+        return priceA - priceB;
+      });
+
+      // Rebuild the menu
+      menu.innerHTML = "";
+      items.forEach(item => menu.appendChild(item));
+    }
+  </script>
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Restaurant Menu</title>
+  <link rel="stylesheet" href="menucard.css" />
+  <style>
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+      gap: 10px;
+      padding: 0 15px;
+    }
+
+    #searchInput {
+      padding: 8px;
+      flex: 1;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .controls button {
+      padding: 8px 12px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .controls button:hover {
+      background-color: #0056b3;
+    }
+
+    .menu-item {
+      display: flex;
+      margin: 10px;
+      border: 1px solid #eee;
+      padding: 10px;
+      border-radius: 5px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .menu-item img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      margin-right: 15px;
+      border-radius: 5px;
+    }
+
+    .info {
+      flex: 1;
+    }
+
+    .add-btn {
+      margin-top: 10px;
+      padding: 6px 12px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .add-btn:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔍 Search & Sort Controls -->
+  <div class="controls">
+    <input type="text" id="searchInput" placeholder="Search for a dish..." />
+    <button onclick="sortByPrice()">Sort by Price</button>
+  </div>
+
+  <!-- 🍽 Menu Items -->
+  <main class="menu">
+    <div class="menu-item">
+      <img src="idly.jpg" alt="Idly Set">
+      <div class="info">
+        <h3>Idly set</h3>
+        <p>₹30</p>
+        <button class="add-btn" onclick="addToCart('Idly set', 30)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="Kal dosa.jpg" alt="Kal Dosa">
+      <div class="info">
+        <h3>Kal Dosa</h3>
+        <p>₹30</p>
+        <button class="add-btn" onclick="addToCart('Kal Dosa', 30)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="parapu.jpeg" alt="Masal Vada">
+      <div class="info">
+        <h3>Masal Vada</h3>
+        <p>₹10</p>
+        <button class="add-btn" onclick="addToCart('Masal Vada', 10)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="methu.jpeg" alt="Medhu Vada">
+      <div class="info">
+        <h3>Medhu Vada</h3>
+        <p>₹10</p>
+        <button class="add-btn" onclick="addToCart('Medhu Vada', 10)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="pongal.jpg" alt="Pongal">
+      <div class="info">
+        <h3>Pongal</h3>
+        <p>₹25</p>
+        <button class="add-btn" onclick="addToCart('Pongal', 25)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="roast.jpeg" alt="Plain Dosa">
+      <div class="info">
+        <h3>Plain Dosa</h3>
+        <p>₹30</p>
+        <button class="add-btn" onclick="addToCart('Plain Dosa', 30)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="ghee-dosa.jpg" alt="Ghee Roast">
+      <div class="info">
+        <h3>Ghee Roast</h3>
+        <p>₹35</p>
+        <button class="add-btn" onclick="addToCart('Ghee Roast', 35)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="podi.jpeg" alt="Podi dosa">
+      <div class="info">
+        <h3>Podi dosa</h3>
+        <p>₹35</p>
+        <button class="add-btn" onclick="addToCart('Podi dosa', 35)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="egg dosa.jpg" alt="Egg dosa">
+      <div class="info">
+        <h3>Egg dosa</h3>
+        <p>₹35</p>
+        <button class="add-btn" onclick="addToCart('Egg dosa', 35)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="Masala-Dosa.jpg" alt="masala dosa">
+      <div class="info">
+        <h3>masala dosa</h3>
+        <p>₹35</p>
+        <button class="add-btn" onclick="addToCart('masala dosa', 35)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="onion uthapam.jpeg" alt="Onion uthappan">
+      <div class="info">
+        <h3>Onion uthappan</h3>
+        <p>₹40</p>
+        <button class="add-btn" onclick="addToCart('Onion uthappan', 40)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="puri.jpeg" alt="Puri set">
+      <div class="info">
+        <h3>Puri set</h3>
+        <p>₹30</p>
+        <button class="add-btn" onclick="addToCart('Puri set', 30)">ADD +</button>
+      </div>
+    </div>
+  </main>
+
+  <button onclick="confirmOrder()" style="margin-top: 20px; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px;">Confirm Order</button>
+
+  <!-- 📜 JavaScript for Search & Sort -->
+  <script>
+    // Add to Cart Functionality
+    function addToCart(itemName, price) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || {};
+      if (cart[itemName]) {
+        cart[itemName].quantity += 1;
+      } else {
+        cart[itemName] = { price: price, quantity: 1 };
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    // Confirm Order Functionality
+    function confirmOrder() {
+      window.location.href = 'order.html'; // Redirect to order page
+    }
+
+    // Search Functionality
+    document.getElementById("searchInput").addEventListener("input", function () {
+      const filter = this.value.toLowerCase();
+      const items = document.querySelectorAll(".menu-item");
+
+      items.forEach((item) => {
+        const text = item.querySelector("h3").textContent.toLowerCase();
+        item.style.display = text.includes(filter) ? "flex" : "none";
+      });
+    });
+
+    // Sort by Price Functionality
+    function sortByPrice() {
+      const menu = document.querySelector(".menu");
+      const items = Array.from(document.querySelectorAll(".menu-item"));
+
+      items.sort((a, b) => {
+        const priceA = parseFloat(a.querySelector("p").textContent.replace("₹", ""));
+        const priceB = parseFloat(b.querySelector("p").textContent.replace("₹", ""));
+        return priceA - priceB;
+      });
+
+      // Rebuild the menu
+      menu.innerHTML = "";
+      items.forEach(item => menu.appendChild(item));
+    }
+  </script>
+
+</body>
+</html>

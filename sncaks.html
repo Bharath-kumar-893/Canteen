@@ -1,0 +1,395 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Snacks & Street Food Menu</title>
+  <link rel="stylesheet" href="menucard.css" />
+  <style>
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 20px;
+    }
+
+    #searchInput {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .controls button {
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .controls button:hover {
+      background-color: #0056b3;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 5px;
+      flex-wrap: wrap;
+    }
+
+    .menu-item img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-right: 15px;
+    }
+
+    .info {
+      flex: 1;
+    }
+
+    .add-btn {
+      margin-top: 10px;
+      padding: 6px 12px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .add-btn:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="controls">
+    <input type="text" id="searchInput" placeholder="Search dishes..." />
+    <button onclick="sortByPrice()">Sort by Price</button>
+  </div>
+
+  <main class="menu">
+    <div class="menu-item"><img src="samos.jpeg" alt="Samosa"><div class="info"><h3>Samosa</h3><p>₹12</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="veg-cutlet.jpg" alt="Veg Cutlet"><div class="info"><h3>Veg Cutlet</h3><p>₹15</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="aloo.jpeg" alt="Allo Sandwich"><div class="info"><h3>Allo Sandwich</h3><p>₹15</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="egg cut.jpeg" alt="Egg Cutlet"><div class="info"><h3>Egg Cutlet</h3><p>₹20</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="kachori.jpg" alt="Kachori"><div class="info"><h3>Kachori</h3><p>₹20</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="bread.jpg" alt="Bread Paneer pakoda"><div class="info"><h3>Bread Paneer pakoda</h3><p>₹20</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="veg frankie.jpeg" alt="Veg Frankie"><div class="info"><h3>Veg Frankie</h3><p>₹35</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="egg frankie.jpeg" alt="Egg Frankie"><div class="info"><h3>Egg Frankie</h3><p>₹40</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="panner.jpg" alt="Paneer Frankie"><div class="info"><h3>Paneer Frankie</h3><p>₹50</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="mushroom frankie.jpeg" alt="Mushroom Frankie"><div class="info"><h3>Mushroom Frankie</h3><p>₹50</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="jamun.jpeg" alt="Gulab Jamun"><div class="info"><h3>Gulab Jamun</h3><p>₹20</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="pani.jpeg" alt="Pani Poori"><div class="info"><h3>Pani Poori</h3><p>₹30</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="bhel.jpeg" alt="Phel Poori"><div class="info"><h3>Phel Poori</h3><p>₹40</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="chenna.jpeg" alt="Samosa Channa"><div class="info"><h3>Samosa Channa</h3><p>₹40</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="thai.jpeg" alt="Thai Poori"><div class="info"><h3>Thai Poori</h3><p>₹40</p><button class="add-btn">ADD +</button></div></div>
+    <div class="menu-item"><img src="Bread-omellete.jpg" alt="Bread omlet"><div class="info"><h3>Bread omlet</h3><p>₹35</p><button class="add-btn">ADD +</button></div></div>
+  </main>
+
+
+  <script>
+    document.getElementById("searchInput").addEventListener("input", function () {
+      const filter = this.value.toLowerCase();
+      const items = document.querySelectorAll(".menu-item");
+
+      items.forEach((item) => {
+        const text = item.querySelector("h3").textContent.toLowerCase();
+        item.style.display = text.includes(filter) ? "flex" : "none";
+      });
+    });
+
+    function sortByPrice() {
+      const menu = document.querySelector(".menu");
+      const items = Array.from(document.querySelectorAll(".menu-item"));
+
+      items.sort((a, b) => {
+        const priceA = parseFloat(a.querySelector("p").textContent.replace("₹", ""));
+        const priceB = parseFloat(b.querySelector("p").textContent.replace("₹", ""));
+        return priceA - priceB;
+      });
+
+      menu.innerHTML = "";
+      items.forEach(item => menu.appendChild(item));
+    }
+  </script>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Snacks & Street Food Menu</title>
+  <link rel="stylesheet" href="menucard.css" />
+  <style>
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 20px;
+    }
+
+    #searchInput {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .controls button {
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .controls button:hover {
+      background-color: #0056b3;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 5px;
+      flex-wrap: wrap;
+    }
+
+    .menu-item img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-right: 15px;
+    }
+
+    .info {
+      flex: 1;
+    }
+
+    .add-btn {
+      margin-top: 10px;
+      padding: 6px 12px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .add-btn:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔍 Search & Sort Controls -->
+  <div class="controls">
+    <input type="text" id="searchInput" placeholder="Search dishes..." />
+    <button onclick="sortByPrice()">Sort by Price</button>
+  </div>
+
+  <main class="menu">
+    <div class="menu-item">
+      <img src="samos.jpeg" alt="Samosa">
+      <div class="info">
+        <h3>Samosa</h3>
+        <p>₹12</p>
+        <button class="add-btn" onclick="addToCart('Samosa', 12)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="veg-cutlet.jpg" alt="Veg Cutlet">
+      <div class="info">
+        <h3>Veg Cutlet</h3>
+        <p>₹15</p>
+        <button class="add-btn" onclick="addToCart('Veg Cutlet', 15)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="aloo.jpeg" alt="Allo Sandwich">
+      <div class="info">
+        <h3>Allo Sandwich</h3>
+        <p>₹15</p>
+        <button class="add-btn" onclick="addToCart('Allo Sandwich', 15)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="egg cut.jpeg" alt="Egg Cutlet">
+      <div class="info">
+        <h3>Egg Cutlet</h3>
+        <p>₹20</p>
+        <button class="add-btn" onclick="addToCart('Egg Cutlet', 20)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="kachori.jpg" alt="Kachori">
+      <div class="info">
+        <h3>Kachori</h3>
+        <p>₹20</p>
+        <button class="add-btn" onclick="addToCart('Kachori', 20)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="bread.jpg" alt="Bread Paneer pakoda">
+      <div class="info">
+        <h3>Bread Paneer pakoda</h3>
+        <p>₹20</p>
+        <button class="add-btn" onclick="addToCart('Bread Paneer pakoda', 20)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="veg frankie.jpeg" alt="Veg Frankie">
+      <div class="info">
+        <h3>Veg Frankie</h3>
+        <p>₹35</p>
+        <button class="add-btn" onclick="addToCart('Veg Frankie', 35)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="egg frankie.jpeg" alt="Egg Frankie">
+      <div class="info">
+        <h3>Egg Frankie</h3>
+        <p>₹40</p>
+        <button class="add-btn" onclick="addToCart('Egg Frankie', 40)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="panner.jpg" alt="Paneer Frankie">
+      <div class="info">
+        <h3>Paneer Frankie</h3>
+        <p>₹50</p>
+        <button class="add-btn" onclick="addToCart('Paneer Frankie', 50)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="mushroom frankie.jpeg" alt="Mushroom Frankie">
+      <div class="info">
+        <h3>Mushroom Frankie</h3>
+        <p>₹50</p>
+        <button class="add-btn" onclick="addToCart('Mushroom Frankie', 50)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="jamun.jpeg" alt="Gulab Jamun">
+      <div class="info">
+        <h3>Gulab Jamun</h3>
+        <p>₹20</p>
+        <button class="add-btn" onclick="addToCart('Gulab Jamun', 20)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="pani.jpeg" alt="Pani Poori">
+      <div class="info">
+        <h3>Pani Poori</h3>
+        <p>₹30</p>
+        <button class="add-btn" onclick="addToCart('Pani Poori', 30)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="bhel.jpeg" alt="Phel Poori">
+      <div class="info">
+        <h3>Phel Poori</h3>
+        <p>₹40</p>
+        <button class="add-btn" onclick="addToCart('Phel Poori', 40)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="chenna.jpeg" alt="Samosa Channa">
+      <div class="info">
+        <h3>Samosa Channa</h3>
+        <p>₹40</p>
+        <button class="add-btn" onclick="addToCart('Samosa Channa', 40)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="thai.jpeg" alt="Thai Poori">
+      <div class="info">
+        <h3>Thai Poori</h3>
+        <p>₹40</p>
+        <button class="add-btn" onclick="addToCart('Thai Poori', 40)">ADD +</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="Bread-omellete.jpg" alt="Bread omlet">
+      <div class="info">
+        <h3>Bread omlet</h3>
+        <p>₹35</p>
+        <button class="add-btn" onclick="addToCart('Bread omlet', 35)">ADD +</button>
+      </div>
+    </div>
+  </main>
+
+  <button onclick="confirmOrder()" style="margin-top: 20px; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px;">Confirm Order</button>
+
+  <script>
+    function addToCart(itemName, price) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || {};
+      if (cart[itemName]) {
+        cart[itemName].quantity += 1;
+      } else {
+        cart[itemName] = { price: price, quantity: 1 };
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    function confirmOrder() {
+      window.location.href = 'order.html'; // Redirect to order page
+    }
+
+    document.getElementById("searchInput").addEventListener("input", function () {
+      const filter = this.value.toLowerCase();
+      const items = document.querySelectorAll(".menu-item");
+
+      items.forEach((item) => {
+        const text = item.querySelector("h3").textContent.toLowerCase();
+        item.style.display = text.includes(filter) ? "flex" : "none";
+      });
+    });
+
+    function sortByPrice() {
+      const menu = document.querySelector(".menu");
+      const items = Array.from(document.querySelectorAll(".menu-item"));
+
+      items.sort((a, b) => {
+        const priceA = parseFloat(a.querySelector("p").textContent.replace("₹", ""));
+        const priceB = parseFloat(b.querySelector("p").textContent.replace("₹", ""));
+        return priceA - priceB;
+      });
+
+      menu.innerHTML = "";
+      items.forEach(item => menu.appendChild(item));
+    }
+  </script>
+
+</body>
+</html>
